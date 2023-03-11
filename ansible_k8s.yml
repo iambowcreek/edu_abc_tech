@@ -3,16 +3,16 @@
   gather_facts: no 
  
   vars: 
-    app_name: myapp 
-    image_name: mydockerhubuser/myapp:latest 
+    app_name: abc_tech_app
+    image_name: iambowcreek/edu_abc_tech
     k8s_namespace: mynamespace 
  
   tasks: 
     - name: Authenticate with DockerHub 
       docker_login: 
         registry: docker.io 
-        username: mydockerhubuser 
-        password: mydockerhubpassword 
+        username: iambowcreek 
+        password: 255193m@rrym3 
  
     - name: Deploy app to Kubernetes 
       k8s: 
@@ -37,4 +37,4 @@
                   - name: "{{ app_name }}" 
                     image: "{{ image_name }}" 
                     ports: 
-                      - containerPort: 8080
+                      - containerPort: 8081
