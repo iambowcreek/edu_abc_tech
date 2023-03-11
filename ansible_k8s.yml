@@ -1,0 +1,40 @@
+- name: Deploy app to Kubernetes 
+  hosts: localhost 
+  gather_facts: no 
+ 
+  vars: 
+    app_name: myapp 
+    image_name: mydockerhubuser/myapp:latest 
+    k8s_namespace: mynamespace 
+ 
+  tasks: 
+    - name: Authenticate with DockerHub 
+      docker_login: 
+        registry: docker.io 
+        username: mydockerhubuser 
+        password: mydockerhubpassword 
+ 
+    - name: Deploy app to Kubernetes 
+      k8s: 
+        state: present 
+        namespace: "{{ k8s_namespace }}" 
+        definition: 
+          apiVersion: apps/v1 
+          kind: Deployment 
+          metadata: 
+            name: "{{ app_name }}" 
+          spec: 
+            replicas: 1 
+            selector: 
+              matchLabels: 
+                app: "{{ app_name }}" 
+            template: 
+              metadata: 
+                labels: 
+                  app: "{{ app_name }}" 
+              spec: 
+                containers: 
+                  - name: "{{ app_name }}" 
+                    image: "{{ image_name }}" 
+                    ports: 
+                      - containerPort: 8080
