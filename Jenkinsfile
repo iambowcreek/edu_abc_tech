@@ -34,13 +34,18 @@ pipeline{
         } 
         stage("6. Push To Dockerhub"){ 
             steps{ 
-                 sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
-                 sh "docker push iambowcreek/edu_abc_tech:latest" 
+                sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
+                sh "docker push iambowcreek/edu_abc_tech:latest" 
             } 
         }
         stage("7. Execute Ansible"){ 
             steps{
-                 ansiblePlaybook credentialsId: 'Ansible_Access', disableHostKeyChecking: true, installation: 'ansible', inventory: 'dev.inv', playbook: 'ansible.yml'
+                sh '''
+                cd /home/ansible
+                
+                ansible-playbook play.yml
+                 //ansiblePlaybook credentialsId: 'Ansible_Access', disableHostKeyChecking: true, installation: 'ansible', inventory: 'dev.inv', playbook: 'ansible.yml'
+                 '''
             } 
         }
    }
