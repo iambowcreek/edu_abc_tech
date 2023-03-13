@@ -44,7 +44,7 @@ pipeline{
                 pwd
 
                 ansible-playbook play.yml
-                 //ansiblePlaybook credentialsId: 'Ansible_Access', disableHostKeyChecking: true, installation: 'ansible', inventory: 'dev.inv', playbook: 'ansible.yml'
+                 //ansiblePlaybook credentialsId: 'ansible_id', disableHostKeyChecking: true, installation: 'ansible', inventory: 'dev.inv', playbook: 'ansible.yml'
                  '''
             } 
         }
