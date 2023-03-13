@@ -42,8 +42,7 @@ pipeline{
             steps{
                 sh '''
                 pwd
-                cd /home/ansible
-                
+
                 ansible-playbook play.yml
                  //ansiblePlaybook credentialsId: 'Ansible_Access', disableHostKeyChecking: true, installation: 'ansible', inventory: 'dev.inv', playbook: 'ansible.yml'
                  '''
