@@ -40,15 +40,15 @@ pipeline{
         }
         stage("7. Execute Ansible"){ 
             steps{
-                credentialsId: 'Ansible_ec2-user',
-                playbook: '/home/ansible/play.yml',
+                //credentialsId: 'Ansible_ec2-user',
+               //playbook: '/home/ansible/play.yml',
                 //inventory: '/path/to/inventory.ini'
-                sh '''
-                pwd
+                //sh '''
+               // pwd
 
-                ansible-playbook play.yml
-                 //ansiblePlaybook credentialsId: 'Ansible_ec2-user', disableHostKeyChecking: true, installation: 'ansible', inventory: 'dev.inv', playbook: 'ansible.yml'
-                 '''
+                //ansible-playbook play.yml
+                 ansiblePlaybook credentialsId: 'Ansible_ec2-user', disableHostKeyChecking: true, installation: 'ansible', inventory: 'dev.inv', playbook: 'ansible.yml'
+                // '''
             } 
         }
    }
