@@ -41,6 +41,7 @@ pipeline{
         stage("7. Execute Ansible"){ 
             steps{
                 sh '''
+                pwd
                 cd /home/ansible
                 
                 ansible-playbook play.yml
